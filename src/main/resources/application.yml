@@ -1,0 +1,21 @@
+# set server port
+server:
+  port: 8080  # 配置端口
+  servlet:
+    context-path: /
+  address: 127.0.0.1
+
+# spring mvc
+spring:
+#  mvc:
+    #static-path-pattern: /static/**
+#    view: # 默认前后缀
+#          prefix: /
+#          suffix: .html
+
+  datasource: # set database config
+    url: jdbc:mysql://localhost:3306/springdemo?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
