@@ -20,10 +20,10 @@ public class LoginController {
         return user;
     }
 
-    @RequestMapping(value = "/login1", method = RequestMethod.POST)
-    User login1(@RequestBody User user) {
-        System.out.println(user.toString());
-        return user;
-    }
+//    @RequestMapping(value = "/login1", method = RequestMethod.POST)
+//    User login1(@RequestBody User user) {
+//        System.out.println(user.toString());
+//        return user;
+//    }
 
 }
