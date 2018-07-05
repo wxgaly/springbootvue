@@ -15,6 +15,10 @@ public interface UserService {
 
     public User queryUserById(String userId);
 
+    public User queryUserByUsername(String username);
+
+    public User queryUserByUsernameAndPassword(String username, String password);
+
     public List<User> queryUserList(User user);
 
     public void saveUserTransactional(User user);

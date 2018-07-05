@@ -14,6 +14,8 @@ import java.util.Date;
 public class User {
 
     @Id
+    @GeneratedValue(generator = "JDBC")
+    @Column(name="id")
     private String id;
 
     /**

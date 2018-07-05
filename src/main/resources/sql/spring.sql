@@ -11,7 +11,7 @@ CREATE TABLE `user` (
   `last_login_ip` varchar(20) DEFAULT NULL COMMENT '最后一次登录IP',
   `last_login_time` datetime DEFAULT NULL COMMENT '最后一次登录时间',
   `is_delete` int(1) NOT NULL,
-  `regist_time` datetime NOT NULL,
+  `register_time` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';

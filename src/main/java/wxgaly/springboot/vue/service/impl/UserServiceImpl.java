@@ -56,24 +56,53 @@ public class UserServiceImpl implements UserService {
     @Transactional(propagation = Propagation.SUPPORTS)
     public User queryUserById(String userId) {
 
-        try {
-            Thread.sleep(6000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(6000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         return userMapper.selectByPrimaryKey(userId);
+    }
+
+    @Override
+    public User queryUserByUsername(String username) {
+
+        Example example = new Example(User.class);
+        Example.Criteria criteria = example.createCriteria();
+        if (!StringUtil.isEmpty(username)) {
+			criteria.andEqualTo("username", username);
+//            criteria.andLike("username", "%" + username + "%");
+        }
+
+        return userMapper.selectOneByExample(example);
+    }
+
+    @Override
+    public User queryUserByUsernameAndPassword(String username, String password) {
+        Example example = new Example(User.class);
+        Example.Criteria criteria = example.createCriteria();
+
+        if (!StringUtil.isEmpty(username)) {
+            criteria.andEqualTo("username", username);
+        }
+
+        if (!StringUtil.isEmpty(password)) {
+            criteria.andEqualTo("password", password);
+        }
+
+        return userMapper.selectOneByExample(example);
     }
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<User> queryUserList(User user) {
 
-        try {
-            Thread.sleep(11000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(11000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         Example example = new Example(User.class);
         Example.Criteria criteria = example.createCriteria();
@@ -95,13 +124,10 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public void saveUserTransactional(User user) {
-
         userMapper.insert(user);
 
-        int a = 1 / 0;
+//        user.setIsDelete(1);
 
-        user.setIsDelete(1);
-        userMapper.updateByPrimaryKeySelective(user);
     }
 
 }
