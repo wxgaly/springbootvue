@@ -2,6 +2,7 @@ package wxgaly.springboot.vue.controller;
 
 import org.springframework.web.bind.annotation.*;
 import wxgaly.springboot.vue.pojo.User;
+import wxgaly.springboot.vue.utils.JsonUtils;
 
 /**
  * wxgaly.springboot.vue.controller.LoginController
@@ -9,15 +10,14 @@ import wxgaly.springboot.vue.pojo.User;
  * @author Created by WXG on 2018/7/3 003 13:49.
  * @version V1.0
  */
-
 @RestController
 @RequestMapping(value = "/api")
 public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    User login(User user) {
+    String login(User user) {
         System.out.println(user.toString());
-        return user;
+        return JsonUtils.objectToJson(user);
     }
 
 //    @RequestMapping(value = "/login1", method = RequestMethod.POST)
