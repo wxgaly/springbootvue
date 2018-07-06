@@ -45,10 +45,6 @@ public class JSONResult {
         return new JSONResult(500, msg, null);
     }
 
-    public static JSONResult errorMap(Object data) {
-        return new JSONResult(501, "error", data);
-    }
-
     public static JSONResult errorTokenMsg(String msg) {
         return new JSONResult(502, msg, null);
     }
@@ -72,13 +68,13 @@ public class JSONResult {
     }
 
     public JSONResult(Object data) {
-        this.status = 200;
+        this.status = Status.OK.getCode();
         this.msg = "OK";
         this.data = data;
     }
 
     public Boolean isOK() {
-        return this.status == 200;
+        return this.status == Status.OK.getCode();
     }
 
     public Integer getStatus() {
@@ -111,7 +107,6 @@ public class JSONResult {
      * @return
      * @Description: 将json结果集转化为LeeJSONResult对象
      * 需要转换的对象是一个类
-     * @author leechenxiang
      * @date 2016年4月22日 下午8:34:58
      */
     public static JSONResult formatToPojo(String jsonData, Class<?> clazz) {
@@ -139,7 +134,6 @@ public class JSONResult {
      * @param json
      * @return
      * @Description: 没有object对象的转化
-     * @author leechenxiang
      * @date 2016年4月22日 下午8:35:21
      */
     public static JSONResult format(String json) {
@@ -157,7 +151,6 @@ public class JSONResult {
      * @return
      * @Description: Object是集合转化
      * 需要转换的对象是一个list
-     * @author leechenxiang
      * @date 2016年4月22日 下午8:35:31
      */
     public static JSONResult formatToList(String jsonData, Class<?> clazz) {

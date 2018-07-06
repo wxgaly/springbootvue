@@ -48,11 +48,13 @@ public class RegisterController {
             } else {
                 //成功创建用户
                 User newUser = new User();
+                newUser.setId(String.valueOf(System.currentTimeMillis()));
                 newUser.setUsername(user.getUsername());
                 newUser.setPassword(user.getPassword());
                 newUser.setRegisterTime(new Date());
+                newUser.setIsDelete(0);
 
-                logger.info(newUser.toString());
+                logger.info("create user success ---- " + newUser.toString());
                 userService.saveUserTransactional(newUser);
                 return JsonUtils.objectToJson(userService.queryUserByUsername(user.getUsername()));
             }

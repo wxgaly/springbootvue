@@ -1,15 +1,14 @@
-package wxgaly.springboot.vue.execption;
+package wxgaly.springboot.vue.exception;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import wxgaly.springboot.vue.pojo.JSONResult;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * wxgaly.springboot.vue.execption.ExceptionHandler
+ * wxgaly.springboot.vue.exception.ExceptionHandler
  *
  * @author Created by WXG on 2018/7/5 22:54.
  * @version V1.0

@@ -19,3 +19,6 @@ spring:
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
 
+# 日志配置
+logging:
+  config: classpath:logback-boot.xml
