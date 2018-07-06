@@ -17,7 +17,7 @@ public enum Status {
     /**
      * 未知异常
      */
-    EXECPTION(10000),
+    EXCEPTION(10000),
 
     /**
      * 用户名或密码错误
