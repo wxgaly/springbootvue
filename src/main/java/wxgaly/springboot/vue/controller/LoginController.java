@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import wxgaly.springboot.vue.pojo.JSONResult;
+import wxgaly.springboot.vue.pojo.Status;
 import wxgaly.springboot.vue.pojo.User;
 import wxgaly.springboot.vue.service.UserService;
 import wxgaly.springboot.vue.utils.JsonUtils;
@@ -36,7 +37,7 @@ public class LoginController {
         if (queryUser != null) {
             result = JSONResult.ok();
         } else {
-            result = JSONResult.errorMsg("用户名或密码错误!");
+            result = JSONResult.errorMessage(Status.USERNAME_OR_PASSWORD_ERROR.getCode(), "用户名或密码错误!");
         }
 
         return JsonUtils.objectToJson(result);

@@ -41,8 +41,8 @@ public class JSONResult {
         return new JSONResult(null);
     }
 
-    public static JSONResult errorMsg(String msg) {
-        return new JSONResult(500, msg, null);
+    public static JSONResult errorMessage(int code, String msg){
+        return new JSONResult(code, msg, null);
     }
 
     public static JSONResult errorTokenMsg(String msg) {
@@ -50,7 +50,7 @@ public class JSONResult {
     }
 
     public static JSONResult errorException(String msg) {
-        return new JSONResult(555, msg, null);
+        return new JSONResult(Status.EXCEPTION.getCode(), msg, null);
     }
 
     public JSONResult() {
