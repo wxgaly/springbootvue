@@ -8,7 +8,11 @@ import wxgaly.springboot.vue.pojo.JSONResult;
 import wxgaly.springboot.vue.pojo.Status;
 import wxgaly.springboot.vue.pojo.User;
 import wxgaly.springboot.vue.service.UserService;
+import wxgaly.springboot.vue.utils.IpUtil;
 import wxgaly.springboot.vue.utils.JsonUtils;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 /**
  * wxgaly.springboot.vue.controller.LoginController
@@ -26,7 +30,7 @@ public class LoginController {
     private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    String login(User user) {
+    String login(HttpServletRequest request, User user) {
         logger.info(user.toString());
 
         User queryUser = userService.queryUserByUsernameAndPassword(user.getUsername(), user.getPassword());
@@ -35,7 +39,19 @@ public class LoginController {
 
         // 判断用户名密码是否正确，匹配
         if (queryUser != null) {
-            result = JSONResult.ok();
+
+            //记录登录ip地址以及登录时间
+            //request,response还可以通过以下两种方式获取
+            //ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+            //HttpServletRequest request = requestAttributes.getRequest();
+            //HttpServletResponse response = requestAttributes.getResponse();
+            String ipAddr = IpUtil.getIpAddr(request);
+            Date loginDate = new Date();
+            queryUser.setLastLoginIp(ipAddr);
+            queryUser.setLastLoginTime(loginDate);
+
+            userService.updateUser(queryUser);
+            result = JSONResult.ok(queryUser);
         } else {
             result = JSONResult.errorMessage(Status.USERNAME_OR_PASSWORD_ERROR.getCode(), "用户名或密码错误!");
         }
