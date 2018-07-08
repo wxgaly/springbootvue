@@ -56,9 +56,14 @@ public class RegisterController {
                 newUser.setRegisterTime(new Date());
                 newUser.setIsDelete(0);
 
-                logger.info("create user success ---- " + newUser.toString());
-                userService.saveUserTransactional(newUser);
-                return JsonUtils.objectToJson(userService.queryUserByUsername(user.getUsername()));
+                try {
+                    userService.saveUserTransactional(newUser);
+                    logger.info("create user success ---- " + newUser.toString());
+                    return JsonUtils.objectToJson(userService.queryUserByUsername(user.getUsername()));
+                } catch (Exception e) {
+                    logger.info("create user error ---- " + e.getMessage());
+                    return JsonUtils.objectToJson(userService.queryUserByUsername(user.getUsername()));
+                }
             }
 
         }
