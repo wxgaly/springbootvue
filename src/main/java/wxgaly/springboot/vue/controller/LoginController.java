@@ -30,13 +30,12 @@ public class LoginController {
     private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    String login(HttpServletRequest request, User user) {
+    String login(HttpServletRequest request, User user) {//@RequestBody
         logger.info(user.toString());
-
-        User queryUser = userService.queryUserByUsernameAndPassword(user.getUsername(), user.getPassword());
 
         JSONResult result;
 
+        User queryUser = userService.queryUserByUsernameAndPassword(user.getUsername(), user.getPassword());
         // 判断用户名密码是否正确，匹配
         if (queryUser != null) {
 
